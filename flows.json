@@ -1,0 +1,685 @@
+[
+    {
+        "id": "5edd6951775080a4",
+        "type": "tab",
+        "label": "BME280 + LDR + MQTT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "504b3981f3d32443",
+        "type": "mongodb-aleph-out",
+        "z": "5edd6951775080a4",
+        "mongodb": "9c84bc5d37e0c9b4",
+        "name": "Saída MongoDB",
+        "collection": "myCollection",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "insert",
+        "x": 1100,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7b3042bc239a9a8",
+        "type": "function",
+        "z": "5edd6951775080a4",
+        "name": "Saída de Dados Luminosidade",
+        "func": "msg.payload = \"\"\nmsg.topic = \"sensors/luminosity\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 440,
+        "wires": [
+            [
+                "504b3981f3d32443"
+            ]
+        ]
+    },
+    {
+        "id": "cd7f15baeb2d5b99",
+        "type": "ui_text",
+        "z": "5edd6951775080a4",
+        "group": "adaaf9bfa7e64496",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Instant Luminosity Sensor Reading",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 800,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "9ec6a19b13b878a9",
+        "type": "ui_chart",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "group": "adaaf9bfa7e64496",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Luminosity Sensor",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "300",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 750,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b4bb7ffc01776c9",
+        "type": "mqtt in",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "topic": "sensors/luminosity",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "2edd8ec354b8383c",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 410,
+        "y": 440,
+        "wires": [
+            [
+                "e7b3042bc239a9a8"
+            ]
+        ]
+    },
+    {
+        "id": "2397f06083ea1d4d",
+        "type": "mqtt in",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "topic": "sensors/luminosity",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "2edd8ec354b8383c",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 410,
+        "y": 700,
+        "wires": [
+            [
+                "cd7f15baeb2d5b99",
+                "9ec6a19b13b878a9"
+            ]
+        ]
+    },
+    {
+        "id": "285b6506d09761d6",
+        "type": "ui_text",
+        "z": "5edd6951775080a4",
+        "group": "e07276c1bd30c6ff",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Instant Temperature Sensor Reading",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 810,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "008a4b29786e89f9",
+        "type": "ui_chart",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "group": "e07276c1bd30c6ff",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature Sensor",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "300",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 760,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f03007fd41d9b8c0",
+        "type": "mqtt in",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "topic": "sensors/temperature",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "2edd8ec354b8383c",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 410,
+        "y": 800,
+        "wires": [
+            [
+                "285b6506d09761d6",
+                "008a4b29786e89f9"
+            ]
+        ]
+    },
+    {
+        "id": "70459247534a3992",
+        "type": "ui_text",
+        "z": "5edd6951775080a4",
+        "group": "fd3cf77cfb30f804",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Instant Humidity Sensor Reading",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 800,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "8abf968794324365",
+        "type": "ui_chart",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "group": "fd3cf77cfb30f804",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Humidity Sensor",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "300",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 740,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf79a9d1cf0e19c2",
+        "type": "mqtt in",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "topic": "sensors/humidity",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "2edd8ec354b8383c",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 400,
+        "y": 900,
+        "wires": [
+            [
+                "70459247534a3992",
+                "8abf968794324365"
+            ]
+        ]
+    },
+    {
+        "id": "ac222068109bb2b1",
+        "type": "mongodb-aleph-in",
+        "z": "5edd6951775080a4",
+        "mongodb": "9c84bc5d37e0c9b4",
+        "name": "Entrada MongoDB",
+        "collection": "myCollection",
+        "operation": "find",
+        "x": 890,
+        "y": 260,
+        "wires": [
+            [
+                "252e98a8d3ed67ec",
+                "df7972a93391bbdf",
+                "8241e4cd305297ae"
+            ]
+        ]
+    },
+    {
+        "id": "252e98a8d3ed67ec",
+        "type": "debug",
+        "z": "5edd6951775080a4",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f385b3079744b7c2",
+        "type": "inject",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "477a2fde5f3d6730"
+            ]
+        ]
+    },
+    {
+        "id": "df7972a93391bbdf",
+        "type": "mqtt out",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "topic": "server/nodectd",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2edd8ec354b8383c",
+        "x": 1100,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "477a2fde5f3d6730",
+        "type": "function",
+        "z": "5edd6951775080a4",
+        "name": "Entrada de Dados",
+        "func": "msg.skip = 0;\nmsg.sort = { \"date\": -1 };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 260,
+        "wires": [
+            [
+                "ac222068109bb2b1"
+            ]
+        ]
+    },
+    {
+        "id": "3dd0ef0dd1033bdf",
+        "type": "mqtt in",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "topic": "sensors/temperature",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "2edd8ec354b8383c",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 410,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6be06fd84393f326",
+        "type": "mqtt in",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "topic": "sensors/humidity",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "2edd8ec354b8383c",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 400,
+        "y": 560,
+        "wires": [
+            [
+                "dd9c9116f3f69f44"
+            ]
+        ]
+    },
+    {
+        "id": "849f3006ce587d38",
+        "type": "function",
+        "z": "5edd6951775080a4",
+        "name": "Saída de Dados Temperatura",
+        "func": "msg.payload = \"\"\nmsg.topic = \"sensors/temperature\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 500,
+        "wires": [
+            [
+                "504b3981f3d32443"
+            ]
+        ]
+    },
+    {
+        "id": "dd9c9116f3f69f44",
+        "type": "function",
+        "z": "5edd6951775080a4",
+        "name": "Saída de Dados Humidade",
+        "func": "msg.payload = \"\"\nmsg.topic = \"sensors/humidity\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 560,
+        "wires": [
+            [
+                "504b3981f3d32443"
+            ]
+        ]
+    },
+    {
+        "id": "f4a5045a968724be",
+        "type": "ui_switch",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "label": "LED Switch",
+        "tooltip": "",
+        "group": "d228348364c78df7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "signals/nodectd",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "on",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "off",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 770,
+        "y": 1020,
+        "wires": [
+            [
+                "2fb08d6c6be8fe40",
+                "aedfcf5e2ef4f6ee"
+            ]
+        ]
+    },
+    {
+        "id": "2fb08d6c6be8fe40",
+        "type": "mqtt out",
+        "z": "5edd6951775080a4",
+        "name": "",
+        "topic": "signals/nodectd",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2edd8ec354b8383c",
+        "x": 980,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "aedfcf5e2ef4f6ee",
+        "type": "ui_led",
+        "z": "5edd6951775080a4",
+        "order": 2,
+        "group": "d228348364c78df7",
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "LED Indicator",
+        "x": 980,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "8241e4cd305297ae",
+        "type": "ui_template",
+        "z": "5edd6951775080a4",
+        "group": "adaaf9bfa7e64496",
+        "name": "GG",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<table>\n    <thead>\n        <tr>\n            <th>ID</th>\n            <th>luminosity</th>\n            <th>humidity</th>\n        </tr>\n    </thead>\n    <tbody>\n        {% for item in msg.payload %}\n        <tr>\n            <td>{{ item._id }}</td>\n            <td>{{ item.luminosity }}</td>\n            <td>{{ item.humidity }}</td>\n        </tr>\n        {% endfor %}\n    </tbody>\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 910,
+        "y": 380,
+        "wires": [
+            [
+                "252e98a8d3ed67ec"
+            ]
+        ]
+    },
+    {
+        "id": "9c84bc5d37e0c9b4",
+        "type": "mongodb-aleph-config",
+        "hostname": "localhost",
+        "topology": "direct",
+        "connectOptions": "",
+        "port": "27017",
+        "db": "myDB",
+        "name": ""
+    },
+    {
+        "id": "adaaf9bfa7e64496",
+        "type": "ui_group",
+        "name": "Data Input Luminosity",
+        "tab": "fa95b7a49a366d45",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2edd8ec354b8383c",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "serverdatactd.duckdns.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e07276c1bd30c6ff",
+        "type": "ui_group",
+        "name": "Data Input Temperature",
+        "tab": "fa95b7a49a366d45",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fd3cf77cfb30f804",
+        "type": "ui_group",
+        "name": "Data Input Humidity",
+        "tab": "fa95b7a49a366d45",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d228348364c78df7",
+        "type": "ui_group",
+        "name": "LED Selector Switch",
+        "tab": "fa95b7a49a366d45",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fa95b7a49a366d45",
+        "type": "ui_tab",
+        "name": "Server Data CTD IFSP",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
